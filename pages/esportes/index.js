@@ -37,7 +37,8 @@ const index = () => {
 
   return (
     <>
-      <Navegacao>   
+      <Navegacao> 
+      <Button href={'/esportes/form'} className='mb-3' >Novo</Button>  
           {esportes.map(item => (
               <Card  className="bg-dark text-white">   
                 <Card.Img style={{ width: '36rem' }} alt="Card image" title={item.nome} src={item.imagem} />

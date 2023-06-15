@@ -1,7 +1,7 @@
 import Navegacao from '@/components/Navegacao'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Dropdown, Table } from 'react-bootstrap'
+import { Button, Dropdown, Table } from 'react-bootstrap'
 
 const index = () => {
     const [alunos, setAlunos] = useState([])
@@ -23,6 +23,7 @@ const index = () => {
   return (
     <>
       <Navegacao>
+        <Button href={'/alunos/form'} className='mb-3' >Novo</Button>
         <Table striped bordered hover>
       <thead>
         <tr>

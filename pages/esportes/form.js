@@ -27,7 +27,6 @@ const form = () => {
       <Navegacao>
         <Card>
           <Card.Body>
-
             <Form>
               <Form.Group className="mb-3" controlId="nome">
                 <Form.Label>Nome:</Form.Label>
