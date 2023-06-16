@@ -77,7 +77,7 @@ function getAll() {
 
               <Form.Group className="mb-3" controlId="data">
                 <Form.Label>Data:</Form.Label>
-                <Form.Control isInvalid={errors.imagem}
+                <Form.Control isInvalid={errors.data}
                   {...register('data', validatorMaterial.data)}
                   type="text"
                   onChange={handleChange}

@@ -1,10 +1,12 @@
 import Navegacao from '@/components/Navegacao'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { Button, Dropdown, Table } from 'react-bootstrap'
 
 const index = () => {
     const [professores, setProfessores] = useState([])
+    const { push } = useRouter()
 
     useEffect(() => {
       getAll()
@@ -18,7 +20,7 @@ const index = () => {
       if (confirm('Deseja realmente excluir?'))
         axios.delete('/api/professores/' + id)
       getAll()
-  
+      push('/professores')
     }
   
    

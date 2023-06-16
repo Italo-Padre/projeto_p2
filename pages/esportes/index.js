@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { Button, Card, Col, Dropdown, Form, Row } from 'react-bootstrap'
+import { Button, Card, CardImg, Col, Dropdown, Form, Row, Table } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
@@ -39,27 +39,40 @@ const index = () => {
     <>
       <Navegacao> 
       <Button href={'/esportes/form'} className='mb-3' >Novo</Button>  
-          {esportes.map(item => (
-              <Card  className="bg-dark text-white">   
-                <Card.Img style={{ width: '36rem' }} alt="Card image" title={item.nome} src={item.imagem} />
-                <Card.Body>
-                  <Card.Title>{item.nome}</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                  </Card.Text>
-                  <Dropdown as={ButtonGroup}>
-                    <Button variant="success">Split Button</Button>
+      <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Imagem</th>
+              <th>Nome</th>
+              <th>Preço</th>
+              <th>Descrição</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            {esportes.map(item => (
+              <tr key={item.id}>
+                <td>
+                  <Dropdown>
                     <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
                     <Dropdown.Menu>
                       <Dropdown.Item href={'/esportes/' + item.id}>Alterar</Dropdown.Item>
                       <Dropdown.Item onClick={() => excluir(item.id)} >Excluir</Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-                </Card.Body>
-              </Card>  
-          ))}
+                </td>
+                <td>
+                  <Card.Img src={item.imagem}/>
+                </td>
+                <td>{item.nome}</td>
+                <td>{item.preco}</td>
+                <td>{item.descricao}</td>
+               
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </Navegacao>
     </>
   )

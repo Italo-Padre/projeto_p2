@@ -10,7 +10,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 const index = () => {
 
-
+  
   const [esportes, setEsportes] = useState([])
 
   useEffect(() => {
@@ -32,13 +32,13 @@ const index = () => {
     if (confirm('Deseja realmente excluir?'))
       axios.delete('/api/esportes/' + id)
     getAll()
+    
 
   }
 
   return (
     <>
       <Navegacao>
-      <Button href={'/esportes/form'} className='mb-3' >Novo</Button>
           {esportes.map(item => (
         <CardGroup className="bg-success text-white m-2">
             <Card  >   
@@ -49,12 +49,12 @@ const index = () => {
                     {item.preco}
                   </Card.Text>
                   <Dropdown as={ButtonGroup}>
-                    <Button variant="success">Split Button</Button>
+                    <Button variant="success">Configurações</Button>
                     <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
                     <Dropdown.Menu>
                       <Dropdown.Item href={'/esportes/' + item.id}>Alterar</Dropdown.Item>
                       <Dropdown.Item onClick={() => excluir(item.id)} >Excluir</Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                      <Dropdown.Item href="/esporte/form">Adicionar outro esporte</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </Card.Body>
@@ -66,6 +66,11 @@ const index = () => {
               </Card>  
           </CardGroup>   
           ))}
+           <div className="d-grid mb-5 gap-2">
+      <Button href='/alunos/form' variant="primary" size="lg">
+       Matricule-se Já
+      </Button>
+    </div>
       </Navegacao>
     </>
   )

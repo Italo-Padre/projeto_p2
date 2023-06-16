@@ -93,13 +93,18 @@ const form = () => {
                             </Row>
                             <Row>
                                 <Col md={6}>
-                                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                        <Form.Check type="checkbox" label="Check me out" />
+                                    <Form.Group className="mb-3" controlId="data">
+                                        <Form.Label>Data de Nascimento:</Form.Label>
+                                        <Form.Control isInvalid={errors.imagem}
+                                            {...register('data', validatorAluno.data)}
+                                            type="text" placeholder="Data de Nascimento"
+                                            onChange={handleChange}
+                                            mask='99/99/9999' />
+                                        {
+                                            errors.data &&
+                                            <small>{errors.data.message}</small>
+                                        }
                                     </Form.Group>
-                                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                        <Form.Check type="checkbox" label="Check me out" />
-                                    </Form.Group>
-
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group className="mb-3" controlId="cep">

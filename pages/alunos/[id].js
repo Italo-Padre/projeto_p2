@@ -62,7 +62,7 @@ const alterar = () => {
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label >Modalidade</Form.Label>
-                                <Form.Select isInvalid={errors.modalidade} {...register('modalidade',validatorAluno.modalidade)} id="modalidade">
+                                <Form.Select isInvalid={errors.modalidade} {...register('modalidade', validatorAluno.modalidade)} id="modalidade">
                                     {esportes.map(item => (
                                         <option key={item.id}>{item.nome}</option>
                                     ))}
@@ -104,16 +104,16 @@ const alterar = () => {
                             </Row>
                             <Row>
                                 <Col md={6}>
-                                    <Form.Group className="mb-3" controlId="salario">
-                                        <Form.Label>Salario</Form.Label>
-                                        <Form.Control isInvalid={errors.salario}
-                                            {...register('salario', validatorAluno.salario)}
-                                            type="text" placeholder="salario"
+                                    <Form.Group className="mb-3" controlId="data">
+                                        <Form.Label>Data de Nascimento:</Form.Label>
+                                        <Form.Control isInvalid={errors.imagem}
+                                            {...register('data', validatorAluno.data)}
+                                            type="text" placeholder="Data de Nascimento"
                                             onChange={handleChange}
-                                            mask='R$ 9.999,99' />
+                                            mask='99/99/9999' />
                                         {
-                                            errors.salario &&
-                                            <small>{errors.salario.message}</small>
+                                            errors.data &&
+                                            <small>{errors.data.message}</small>
                                         }
                                     </Form.Group>
                                 </Col>

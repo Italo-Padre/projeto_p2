@@ -21,7 +21,7 @@ const form = () => {
             setEsportes(resultado.data)
         })
     }
-
+console.log(esportes);
     function salvar(dados) {
         axios.post('/api/professores', dados)
         push('/professores')

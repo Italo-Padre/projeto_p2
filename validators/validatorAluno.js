@@ -29,6 +29,9 @@ const validatorAluno = {
     },
     modalidade:{
         required:'Este campo é obrigatório',
-    }
+    },
+    data:{
+      required:'Este campo é obrigatório',
+  }
 }
 export default validatorAluno
