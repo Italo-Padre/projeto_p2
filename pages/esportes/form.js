@@ -13,6 +13,7 @@ const form = () => {
 
   function salvar(dados) {
     axios.post('/api/esportes', dados)
+    push('/')
   }
   function handleChange(event) {
 
@@ -30,7 +31,7 @@ const form = () => {
             <Form>
               <Form.Group className="mb-3" controlId="nome">
                 <Form.Label>Nome:</Form.Label>
-                <Form.Control isInvalid={errors.nome}
+                <Form.Control isInvalid={errors.nome} placeholder='Nome do Esporte'
                   {...register('nome', validatorEsporte.nome)}
                   type="text" />
                 {
@@ -41,7 +42,9 @@ const form = () => {
 
               <Form.Group className="mb-3" controlId="nome">
                 <Form.Label>Descrição:</Form.Label>
-                <Form.Control isInvalid={errors.descricao} {...register('descricao', validatorEsporte.descricao)} type="text" />
+                <Form.Control isInvalid={errors.descricao} 
+                {...register('descricao', validatorEsporte.descricao)} 
+               placeholder='Descrição' type="text" />
                 {
                   errors.descricao &&
                   <small>{errors.descricao.message}</small>
@@ -49,8 +52,10 @@ const form = () => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="duracao">
-                <Form.Label>Imagem:</Form.Label>
-                <Form.Control isInvalid={errors.imagem} {...register('imagem', validatorEsporte.imagem)} type="text" />
+                <Form.Label>URL da Imagem:</Form.Label>
+                <Form.Control isInvalid={errors.imagem}
+                 {...register('imagem', validatorEsporte.imagem)} 
+                placeholder='Cole a URl da imagem' type="text" />
                 {
                   errors.imagem &&
                   <small>{errors.imagem.message}</small>
@@ -62,7 +67,7 @@ const form = () => {
                 <Form.Control
                   isInvalid={errors.preco}
                   {...register('preco', validatorEsporte.preco)}
-                  type="text"
+                 placeholder='Preço' type="text"
                   mask='R$ 999,99'
                   onChange={handleChange} />
                 {
@@ -70,10 +75,11 @@ const form = () => {
                   <small>{errors.preco.message}</small>
                 }
               </Form.Group>
-
+            <div className='text-center'>
               <Button onClick={handleSubmit(salvar)} variant="primary" type="submit">
-                Submit
+                Salvar
               </Button>
+            </div>
             </Form>
           </Card.Body>
         </Card>

@@ -21,7 +21,7 @@ const form = () => {
             setEsportes(resultado.data)
         })
     }
-console.log(esportes);
+    console.log(esportes);
     function salvar(dados) {
         axios.post('/api/professores', dados)
         push('/professores')
@@ -43,7 +43,7 @@ console.log(esportes);
                                 <Form.Label>Nome:</Form.Label>
                                 <Form.Control isInvalid={errors.nome}
                                     {...register('nome', validatorProfessor.nome)}
-                                    type="text" />
+                                    placeholder='Nome' type="text" />
                                 {
                                     errors.nome &&
                                     <small>{errors.nome.message}</small>
@@ -51,7 +51,8 @@ console.log(esportes);
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label >Modalidade</Form.Label>
-                                <Form.Select isInvalid={errors.modalidade} {...register('modalidade',validatorProfessor.modalidade)} id="modalidade">
+                                <Form.Select isInvalid={errors.modalidade}
+                                    {...register('modalidade', validatorProfessor.modalidade)} id="modalidade">
                                     {esportes.map(item => (
                                         <option key={item.id}>{item.nome}</option>
                                     ))}
@@ -121,9 +122,11 @@ console.log(esportes);
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            <Button onClick={handleSubmit(salvar)} variant="primary" type="submit">
-                                Submit
-                            </Button>
+                            <div className='text-center'>
+                                <Button onClick={handleSubmit(salvar)} variant="primary" type="submit">
+                                    Salvar
+                                </Button>
+                            </div>
                         </Form>
                     </Card.Body>
                 </Card>

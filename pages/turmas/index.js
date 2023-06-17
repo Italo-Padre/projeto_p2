@@ -2,12 +2,13 @@ import Navegacao from '@/components/Navegacao'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { Button, Dropdown, Table } from 'react-bootstrap'
+import { Button, Dropdown, Form, Table } from 'react-bootstrap'
 
 const index = () => {
 
     const [turmas, setTurmas] = useState([])
     const { push } = useRouter()
+    const[busca,setBusca]= useState('')
 
     useEffect(() => {
       getAll()
@@ -25,11 +26,13 @@ const index = () => {
   
     }
   
+    const turmasFiltrados = turmas.filter((item) => item.nome.toLowerCase().includes(busca.toLowerCase()));
 
   return (
     <>
         <Navegacao>
         <Button href={'/turmas/form'} className='mb-3' >Novo</Button>
+        <Form.Control type='text' className='mb-2' placeholder='Busca' value={busca} onChange={(ev) => setBusca(ev.target.value)}></Form.Control>
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -40,7 +43,7 @@ const index = () => {
             </tr>
           </thead>
           <tbody>
-            {turmas.map(item => (
+            {turmasFiltrados.map(item => (
               <tr key={item.id}>
                 <td>
                   <Dropdown>

@@ -54,7 +54,7 @@ const alterar = () => {
                                 <Form.Label>Nome:</Form.Label>
                                 <Form.Control isInvalid={errors.nome}
                                     {...register('nome', validatorAluno.nome)}
-                                    type="text" />
+                                    placeholder='Nome'  type="text" />
                                 {
                                     errors.nome &&
                                     <small>{errors.nome.message}</small>
@@ -106,7 +106,7 @@ const alterar = () => {
                                 <Col md={6}>
                                     <Form.Group className="mb-3" controlId="data">
                                         <Form.Label>Data de Nascimento:</Form.Label>
-                                        <Form.Control isInvalid={errors.imagem}
+                                        <Form.Control isInvalid={errors.data}
                                             {...register('data', validatorAluno.data)}
                                             type="text" placeholder="Data de Nascimento"
                                             onChange={handleChange}
@@ -133,7 +133,7 @@ const alterar = () => {
                                 </Col>
                             </Row>
                             <Button onClick={handleSubmit(salvar)} variant="primary" type="submit">
-                                Submit
+                                Salvar
                             </Button>
                         </Form>
                     </Card.Body>

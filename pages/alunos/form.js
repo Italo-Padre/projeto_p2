@@ -3,7 +3,7 @@ import validatorAluno from '@/validators/validatorAluno'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { Button, Card, Col, Form, Row } from 'react-bootstrap'
+import { Button, Card, Col, Form, Offcanvas, Row } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { mask } from 'remask'
 
@@ -11,6 +11,9 @@ const form = () => {
     const { push } = useRouter()
     const { register, handleSubmit, formState: { errors }, setValue } = useForm()
     const [esportes, setEsportes] = useState([])
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
 
     useEffect(() => {
@@ -37,13 +40,12 @@ const form = () => {
             <Navegacao>
                 <Card>
                     <Card.Body>
-
                         <Form>
                             <Form.Group className="mb-3" controlId="nome">
                                 <Form.Label>Nome:</Form.Label>
                                 <Form.Control isInvalid={errors.nome}
                                     {...register('nome', validatorAluno.nome)}
-                                    type="text" />
+                                    placeholder='Nome' type="text" />
                                 {
                                     errors.nome &&
                                     <small>{errors.nome.message}</small>
@@ -95,7 +97,7 @@ const form = () => {
                                 <Col md={6}>
                                     <Form.Group className="mb-3" controlId="data">
                                         <Form.Label>Data de Nascimento:</Form.Label>
-                                        <Form.Control isInvalid={errors.imagem}
+                                        <Form.Control isInvalid={errors.data}
                                             {...register('data', validatorAluno.data)}
                                             type="text" placeholder="Data de Nascimento"
                                             onChange={handleChange}
@@ -121,12 +123,27 @@ const form = () => {
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            <Button onClick={handleSubmit(salvar)} variant="primary" type="submit">
-                                Submit
+                            <div className='text-center'>
+                            <Button className='m-2' onClick={handleSubmit(salvar)} variant="primary" type="submit">
+                                Salvar
                             </Button>
+                            <Button className='m-2' variant="primary" onClick={handleShow}>
+                                Ver Preços
+                            </Button>
+                            </div>
                         </Form>
                     </Card.Body>
                 </Card>
+                <Offcanvas show={show} onHide={handleClose}>
+                    <Offcanvas.Header closeButton>
+                        <Offcanvas.Title>Tabela de Preços</Offcanvas.Title>
+                    </Offcanvas.Header>
+                    <Offcanvas.Body>
+                        {esportes.map(item => (
+                            <li>{item.nome}-{item.preco}</li>
+                        ))}
+                    </Offcanvas.Body>
+                </Offcanvas>
             </Navegacao>
         </>
     )

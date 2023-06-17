@@ -52,7 +52,7 @@ const alterar = () => {
                 <Form.Label>Tipo:</Form.Label>
                 <Form.Control isInvalid={errors.tipo}
                   {...register('tipo', validatorMaterial.tipo)}
-                  type="text" />
+                 placeholder='Tipo' type="text" />
                 {
                   errors.tipo &&
                   <small>{errors.tipo.message}</small>
@@ -76,7 +76,7 @@ const alterar = () => {
                 <Form.Label>Preço:</Form.Label>
                 <Form.Control isInvalid={errors.preco}
                   {...register('preco', validatorMaterial.preco)}
-                  type="text" onChange={handleChange}
+                 placeholder='Preço' type="text" onChange={handleChange}
                   mask='R$ 999,99' />
                 {
                   errors.preco &&
@@ -86,9 +86,9 @@ const alterar = () => {
 
               <Form.Group className="mb-3" controlId="data">
                 <Form.Label>Data:</Form.Label>
-                <Form.Control isInvalid={errors.imagem}
+                <Form.Control isInvalid={errors.data}
                   {...register('data', validatorMaterial.data)}
-                  type="text"
+                placeholder='Data de Compra'  type="text"
                   onChange={handleChange}
                   mask='99/99/9999' />
                 {
@@ -96,9 +96,11 @@ const alterar = () => {
                   <small>{errors.data.message}</small>
                 }
               </Form.Group>
+              <div className='text-center'>
               <Button onClick={handleSubmit(salvar)} variant="primary" type="submit">
-                Submit
+                Salvar
               </Button>
+            </div>
             </Form>
           </Card.Body>
         </Card>

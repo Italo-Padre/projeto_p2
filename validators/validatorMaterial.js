@@ -11,6 +11,9 @@ const validatorMaterial = {
     },
     data:{
         required:'Este campo é obrigatório',
+    },
+    esporte:{
+        required:'Este campo é obrigatório',
     }
     
 }

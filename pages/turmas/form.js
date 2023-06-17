@@ -44,7 +44,7 @@ const form = () => {
                                 <Form.Label>Nome:</Form.Label>
                                 <Form.Control isInvalid={errors.nome}
                                     {...register('nome', validatorTurmas.nome)}
-                                    type="text" />
+                                    placeholder='Nome da Turma' type="text" />
                                 {
                                     errors.nome &&
                                     <small>{errors.nome.message}</small>
@@ -66,7 +66,7 @@ const form = () => {
                             <Form.Group>
                                 <Form.Label >Horario</Form.Label>
                                 <Form.Select isInvalid={errors.horario} {...register('horario', validatorTurmas.horario)} id="horario">
-    
+                                    <option></option>
                                     <option value='manha' >Manhã</option>
                                     <option value='tarde' >Tarde</option>
                                     <option value='noite' >Noite</option>
@@ -77,9 +77,11 @@ const form = () => {
                                 }
                             </Form.Group>
 
-                            <Button onClick={handleSubmit(salvar)} variant="primary" type="submit">
-                                Submit
-                            </Button>
+                            <div className='text-center'>
+                                <Button onClick={handleSubmit(salvar)} variant="primary" type="submit">
+                                    Salvar
+                                </Button>
+                            </div>
                         </Form>
                     </Card.Body>
                 </Card>

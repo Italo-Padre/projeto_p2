@@ -10,9 +10,9 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 const index = () => {
 
-
+  const [busca, setBusca] = useState('')
   const [esportes, setEsportes] = useState([])
-
+  
   useEffect(() => {
     getAll()
   }, [])
@@ -23,35 +23,36 @@ const index = () => {
   }
   function excluir(id) {
     if (confirm('Deseja realmente excluir?'))
-      axios.delete('/api/esportes/' + id)
+    axios.delete('/api/esportes/' + id)
     getAll()
-
+    
   }
-
+  
   function excluir(id) {
     if (confirm('Deseja realmente excluir?'))
-      axios.delete('/api/esportes/' + id)
+    axios.delete('/api/esportes/' + id)
     getAll()
-
+    
   }
-
+  
+  const esportesFiltrados = esportes.filter((item) => item.nome.toLowerCase().includes(busca.toLowerCase()));
   return (
     <>
       <Navegacao> 
       <Button href={'/esportes/form'} className='mb-3' >Novo</Button>  
+                <Form.Control type='text' className='mb-2' placeholder='Busca' value={busca} onChange={(ev) => setBusca(ev.target.value)}></Form.Control>
       <Table striped bordered hover>
           <thead>
             <tr>
-              <th>#</th>
+              <th>Configuração</th>
               <th>Imagem</th>
               <th>Nome</th>
               <th>Preço</th>
               <th>Descrição</th>
-              
             </tr>
           </thead>
           <tbody>
-            {esportes.map(item => (
+            {esportesFiltrados.map(item => (
               <tr key={item.id}>
                 <td>
                   <Dropdown>

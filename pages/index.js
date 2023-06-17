@@ -40,31 +40,22 @@ const index = () => {
     <>
       <Navegacao>
           {esportes.map(item => (
-        <CardGroup className="bg-success text-white m-2">
-            <Card  >   
-                <Card.Body>
-                  <Card.Title>{item.nome}</Card.Title>
-                  <Card.Text>
-                    {item.descricao}<br></br>
-                    {item.preco}
-                  </Card.Text>
-                  <Dropdown as={ButtonGroup}>
-                    <Button variant="success">Configurações</Button>
-                    <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
-                    <Dropdown.Menu>
-                      <Dropdown.Item href={'/esportes/' + item.id}>Alterar</Dropdown.Item>
-                      <Dropdown.Item onClick={() => excluir(item.id)} >Excluir</Dropdown.Item>
-                      <Dropdown.Item href="/esporte/form">Adicionar outro esporte</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </Card.Body>
-              </Card>  
-            <Card  >   
-                <Card.Body>
-                <Card.Img  alt="Card image" title={item.nome} src={item.imagem} />  
-                </Card.Body>
-              </Card>  
-          </CardGroup>   
+        <Row>
+       
+          <CardGroup>
+         <Card  className="bg-dark text-white text-center">
+         <Card.Img style={{ width: '1100px', height:'500px' }}   src={item.imagem} alt="Card image"  />
+         <Card.ImgOverlay>
+           <Card.Title>{item.nome}</Card.Title>
+           <Card.Text>
+             {item.descricao}
+           </Card.Text>
+           <Card.Text>{item.preco}</Card.Text>
+         </Card.ImgOverlay>
+       </Card>
+          </CardGroup>
+     
+        </Row>
           ))}
            <div className="d-grid mb-5 gap-2">
       <Button href='/alunos/form' variant="primary" size="lg">

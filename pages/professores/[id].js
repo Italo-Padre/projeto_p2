@@ -8,8 +8,8 @@ import { useForm } from 'react-hook-form'
 import { mask } from 'remask';
 
 const alterar = () => {
-    const {push, query} = useRouter()
-    const {register, handleSubmit, setValue,formState:{errors}} = useForm ()
+    const { push, query } = useRouter()
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm()
     const [esportes, setEsportes] = useState([])
 
     useEffect(() => {
@@ -20,22 +20,22 @@ const alterar = () => {
             setEsportes(resultado.data)
         })
     }
-  
-    useEffect(()=> {
-      if(query.id){
-        axios.get('/api/professores/' + query.id).then(resultado=>{
-          const professor = resultado.data
-  
-          for(let atributo in professor){
-            setValue(atributo,professor[atributo])
-          }
-         })
-      }
+
+    useEffect(() => {
+        if (query.id) {
+            axios.get('/api/professores/' + query.id).then(resultado => {
+                const professor = resultado.data
+
+                for (let atributo in professor) {
+                    setValue(atributo, professor[atributo])
+                }
+            })
+        }
     }, [query.id])
-  
-    function salvar(dados){
-      axios.put('/api/professores/' + dados.id, dados)
-      push('/professores')
+
+    function salvar(dados) {
+        axios.put('/api/professores/' + dados.id, dados)
+        push('/professores')
     }
     function handleChange(event) {
         const name = event.target.name
@@ -43,10 +43,10 @@ const alterar = () => {
         const mascara = (event.target.getAttribute('mask'))
         setValue(name, mask(value, mascara))
     }
-  return (
-    <>
-        <Navegacao>
-        <Card>
+    return (
+        <>
+            <Navegacao>
+                <Card>
                     <Card.Body>
 
                         <Form>
@@ -54,7 +54,7 @@ const alterar = () => {
                                 <Form.Label>Nome:</Form.Label>
                                 <Form.Control isInvalid={errors.nome}
                                     {...register('nome', validatorProfessor.nome)}
-                                    type="text" />
+                                    placeholder='Nome' type="text" />
                                 {
                                     errors.nome &&
                                     <small>{errors.nome.message}</small>
@@ -62,7 +62,8 @@ const alterar = () => {
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label >Modalidade</Form.Label>
-                                <Form.Select isInvalid={errors.modalidade} {...register('modalidade',validatorProfessor.modalidade)} id="modalidade">
+                                <Form.Select isInvalid={errors.modalidade}
+                                    {...register('modalidade', validatorProfessor.modalidade)} id="modalidade">
                                     {esportes.map(item => (
                                         <option key={item.id}>{item.nome}</option>
                                     ))}
@@ -132,15 +133,17 @@ const alterar = () => {
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            <Button onClick={handleSubmit(salvar)} variant="primary" type="submit">
-                                Submit
-                            </Button>
+                            <div className='text-center'>
+                                <Button onClick={handleSubmit(salvar)} variant="primary" type="submit">
+                                    Salvar
+                                </Button>
+                            </div>
                         </Form>
                     </Card.Body>
                 </Card>
-        </Navegacao>
-    </>
-  )
+            </Navegacao>
+        </>
+    )
 }
 
 export default alterar
