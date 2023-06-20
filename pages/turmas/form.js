@@ -1,4 +1,4 @@
-import Navegacao from '@/components/Navegacao'
+import NavegacaoForm from '@/components/NavegacaoForm'
 import validatorTurmas from '@/validators/validatorTurmas'
 import validatorProfessor from '@/validators/validatorTurmas'
 import axios from 'axios'
@@ -36,7 +36,7 @@ const form = () => {
 
     return (
         <>
-            <Navegacao>
+            <NavegacaoForm titulo='Turmas'>
                 <Card>
                     <Card.Body>
                         <Form>
@@ -85,7 +85,7 @@ const form = () => {
                         </Form>
                     </Card.Body>
                 </Card>
-            </Navegacao>
+            </NavegacaoForm>
         </>
     )
 }

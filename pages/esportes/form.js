@@ -3,7 +3,7 @@ import React from 'react'
 import { Button, Card, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import axios from 'axios';
-import Navegacao from '@/components/Navegacao';
+import NavegacaoForm from '@/components/NavegacaoForm';
 import validatorEsporte from '@/validators/validatorEsporte';
 import { mask } from 'remask';
 
@@ -25,7 +25,7 @@ const form = () => {
 
   return (
     <>
-      <Navegacao>
+      <NavegacaoForm Titulo='Esportes'>
         <Card>
           <Card.Body>
             <Form>
@@ -83,7 +83,7 @@ const form = () => {
             </Form>
           </Card.Body>
         </Card>
-      </Navegacao>
+      </NavegacaoForm>
     </>
   )
 }

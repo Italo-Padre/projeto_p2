@@ -1,4 +1,4 @@
-import Navegacao from '@/components/Navegacao'
+import NavegacaoForm from '@/components/NavegacaoForm'
 import validatorMaterial from '@/validators/validatorMaterial'
 import axios from 'axios'
 import { useRouter } from 'next/router'
@@ -35,7 +35,7 @@ function getAll() {
   }
   return (
     <>
-      <Navegacao>
+      <NavegacaoForm titulo='Materiais'>
         <Card>
           <Card.Body>
             <Form>
@@ -95,7 +95,7 @@ function getAll() {
             </Form>
           </Card.Body>
         </Card>
-      </Navegacao>
+      </NavegacaoForm>
     </>
   )
 }

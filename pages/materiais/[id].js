@@ -1,4 +1,4 @@
-import Navegacao from '@/components/Navegacao'
+import NavegacaoForm from '@/components/NavegacaoForm'
 import validatorMaterial from '@/validators/validatorMaterial'
 import axios from 'axios'
 import { useRouter } from 'next/router'
@@ -44,7 +44,7 @@ const alterar = () => {
     }
   return (
     <>
-        <Navegacao>
+        <NavegacaoForm titulo='Materiais'>
         <Card>
           <Card.Body>
             <Form>
@@ -104,7 +104,7 @@ const alterar = () => {
             </Form>
           </Card.Body>
         </Card>
-        </Navegacao>
+        </NavegacaoForm>
     </>
   )
 }
