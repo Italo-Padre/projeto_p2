@@ -28,9 +28,8 @@ const index = () => {
 
   return (
     <>
-        <Navegacao>
+        <Navegacao titulo='Professores' value={busca} onChange={(ev) => setBusca(ev.target.value)}>
         <Button href={'/professores/form'} className='mb-3' >Novo</Button>
-        <Form.Control type='text' className='mb-2' placeholder='Busca' value={busca} onChange={(ev) => setBusca(ev.target.value)}></Form.Control>
         <Table striped bordered hover>
       <thead>
         <tr>

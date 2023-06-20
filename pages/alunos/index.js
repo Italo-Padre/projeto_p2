@@ -27,9 +27,8 @@ const index = () => {
 
   return (
     <>
-      <Navegacao>
+      <Navegacao titulo='Alunos' value={busca} onChange={(ev) => setBusca(ev.target.value)}>
         <Button href={'/alunos/form'} className='mb-3' >Novo</Button>
-        <Form.Control type='text' className='mb-2' placeholder='Busca' value={busca} onChange={(ev) => setBusca(ev.target.value)}></Form.Control>
         <Table striped bordered hover>
       <thead>
         <tr>
@@ -37,6 +36,7 @@ const index = () => {
           <th>Nome</th>
           <th>Modalidade</th>
           <th>CPF</th>
+          <th>Data de nascimento</th>
           <th>Telefone</th>
           <th>CEP</th>
         </tr>
@@ -56,6 +56,7 @@ const index = () => {
           <td>{item.nome}</td>
           <td>{item.modalidade}</td>
           <td>{item.cpf}</td>
+          <td>{item.data}</td>
           <td>{item.telefone}</td>
           <td>{item.cep}</td>
         </tr>

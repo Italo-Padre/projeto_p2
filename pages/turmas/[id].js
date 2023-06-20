@@ -87,7 +87,7 @@ const alterar = () => {
                             </Form.Group>
 
                             <div className='text-center'>
-                                <Button onClick={handleSubmit(salvar)} variant="primary" type="submit">
+                                <Button className='m-2' onClick={handleSubmit(salvar)} variant="primary" type="submit">
                                     Salvar
                                 </Button>
                             </div>

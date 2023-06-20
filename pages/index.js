@@ -10,7 +10,9 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 const index = () => {
 
-  
+  const [busca, setBusca] = useState('')
+
+
   const [esportes, setEsportes] = useState([])
 
   useEffect(() => {
@@ -32,36 +34,44 @@ const index = () => {
     if (confirm('Deseja realmente excluir?'))
       axios.delete('/api/esportes/' + id)
     getAll()
-    
+
 
   }
+  const esportesFiltrados = esportes.filter((item) => item.nome.toLowerCase().includes(busca.toLowerCase()));
 
   return (
     <>
-      <Navegacao>
-          {esportes.map(item => (
-        <Row>
-       
-          <CardGroup>
-         <Card  className="bg-dark text-white text-center">
-         <Card.Img style={{ width: '1100px', height:'500px' }}   src={item.imagem} alt="Card image"  />
-         <Card.ImgOverlay>
-           <Card.Title>{item.nome}</Card.Title>
-           <Card.Text>
-             {item.descricao}
-           </Card.Text>
-           <Card.Text>{item.preco}</Card.Text>
-         </Card.ImgOverlay>
-       </Card>
-          </CardGroup>
-     
-        </Row>
+      <Navegacao value={busca} onChange={(ev) => setBusca(ev.target.value)}>
+
+        <Row md={4}>
+
+          {esportesFiltrados.map(item => (
+            
+        <CardGroup>
+                <Card style={{ width: '18rem' }} className= "text-center m-2">
+                  <Card.Body>
+                  <Card.Img  src={item.imagem} alt="Card image" />
+                  <Card.Title>{item.nome}</Card.Title>
+                  <p>
+
+                    {item.descricao}
+                  </p>
+                
+                  <Card.Text>{item.preco}</Card.Text>
+                  <Button href='/esportes' >Configurar</Button>
+                  </Card.Body>
+                </Card>
+            
+        </CardGroup>
+              
           ))}
-           <div className="d-grid mb-5 gap-2">
-      <Button href='/alunos/form' variant="primary" size="lg">
-       Matricule-se Já
-      </Button>
-    </div>
+        </Row>
+        
+        <div className="d-grid mb-5 gap-2">
+          <Button href='/alunos/form' variant="primary" size="lg">
+            Matricule-se Já
+          </Button>
+        </div>
       </Navegacao>
     </>
   )

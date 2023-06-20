@@ -38,9 +38,8 @@ const index = () => {
   const esportesFiltrados = esportes.filter((item) => item.nome.toLowerCase().includes(busca.toLowerCase()));
   return (
     <>
-      <Navegacao> 
+      <Navegacao titulo='Esportes' value={busca} onChange={(ev) => setBusca(ev.target.value)}> 
       <Button href={'/esportes/form'} className='mb-3' >Novo</Button>  
-                <Form.Control type='text' className='mb-2' placeholder='Busca' value={busca} onChange={(ev) => setBusca(ev.target.value)}></Form.Control>
       <Table striped bordered hover>
           <thead>
             <tr>

@@ -7,6 +7,7 @@ const Navegacao = (props) => {
     <>
       <Navbar className='mb-5' bg="dark" variant="dark">
         <Container>
+          <Navbar.Brand >{props.titulo}</Navbar.Brand>
           <Navbar.Brand href="/">Página Inicial</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/esportes">Esportes</Nav.Link>
@@ -15,7 +16,7 @@ const Navegacao = (props) => {
             <Nav.Link href="/materiais">Materiais</Nav.Link>
             <Nav.Link href="/turmas">Turmas</Nav.Link>
           </Nav>
-        <Form.Control placeholder='Pesquisar' type='text' className='m-2' ></Form.Control>
+        <Form.Control placeholder='Pesquisar' type='text' className='m-2' value={props.value} onChange={props.onChange} ></Form.Control>
         </Container>
       </Navbar>
       <Container>

@@ -3,14 +3,18 @@ import validatorAluno from '@/validators/validatorAluno'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { Button, Card, Col, Form, Row } from 'react-bootstrap'
+import { Button, Card, Col, Form, Offcanvas, Row } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { mask } from 'remask';
 
 const alterar = () => {
-    const {push, query} = useRouter()
-    const {register, handleSubmit, setValue,formState:{errors}} = useForm ()
+    const { push, query } = useRouter()
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm()
     const [esportes, setEsportes] = useState([])
+    const [turmas, setTurmas] = useState([])
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() => {
         getAll()
@@ -20,22 +24,29 @@ const alterar = () => {
             setEsportes(resultado.data)
         })
     }
-  
-    useEffect(()=> {
-      if(query.id){
-        axios.get('/api/alunos/' + query.id).then(resultado=>{
-          const alunos = resultado.data
-  
-          for(let atributo in alunos){
-            setValue(atributo,alunos[atributo])
-          }
-         })
-      }
+
+    useEffect(() => {
+
+        axios.get('/api/turmas').then(resultado => {
+            setTurmas(resultado.data)
+        })
+    }, [])
+
+    useEffect(() => {
+        if (query.id) {
+            axios.get('/api/alunos/' + query.id).then(resultado => {
+                const alunos = resultado.data
+
+                for (let atributo in alunos) {
+                    setValue(atributo, alunos[atributo])
+                }
+            })
+        }
     }, [query.id])
-  
-    function salvar(dados){
-      axios.put('/api/alunos/' + dados.id, dados)
-      push('/alunos')
+
+    function salvar(dados) {
+        axios.put('/api/alunos/' + dados.id, dados)
+        push('/alunos')
     }
     function handleChange(event) {
         const name = event.target.name
@@ -43,10 +54,10 @@ const alterar = () => {
         const mascara = (event.target.getAttribute('mask'))
         setValue(name, mask(value, mascara))
     }
-  return (
-    <>
-        <Navegacao>
-        <Card>
+    return (
+        <>
+            <Navegacao>
+                <Card>
                     <Card.Body>
 
                         <Form>
@@ -54,7 +65,7 @@ const alterar = () => {
                                 <Form.Label>Nome:</Form.Label>
                                 <Form.Control isInvalid={errors.nome}
                                     {...register('nome', validatorAluno.nome)}
-                                    placeholder='Nome'  type="text" />
+                                    placeholder='Nome' type="text" />
                                 {
                                     errors.nome &&
                                     <small>{errors.nome.message}</small>
@@ -63,7 +74,7 @@ const alterar = () => {
                             <Form.Group>
                                 <Form.Label >Modalidade</Form.Label>
                                 <Form.Select isInvalid={errors.modalidade} {...register('modalidade', validatorAluno.modalidade)} id="modalidade">
-                                    {esportes.map(item => (
+                                    {turmas.map(item => (
                                         <option key={item.id}>{item.nome}</option>
                                     ))}
                                 </Form.Select>
@@ -132,15 +143,30 @@ const alterar = () => {
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            <Button onClick={handleSubmit(salvar)} variant="primary" type="submit">
-                                Salvar
-                            </Button>
+                            <div className='text-center'>
+                                <Button className='m-2' onClick={handleSubmit(salvar)} variant="primary" type="submit">
+                                    Salvar
+                                </Button>
+                                <Button className='m-2' variant="primary" onClick={handleShow}>
+                                    Ver Preços
+                                </Button>
+                            </div>
                         </Form>
                     </Card.Body>
                 </Card>
-        </Navegacao>
-    </>
-  )
+                <Offcanvas show={show} onHide={handleClose}>
+                    <Offcanvas.Header closeButton>
+                        <Offcanvas.Title>Tabela de Preços</Offcanvas.Title>
+                    </Offcanvas.Header>
+                    <Offcanvas.Body>
+                        {esportes.map(item => (
+                            <li>{item.nome}-{item.preco}</li>
+                        ))}
+                    </Offcanvas.Body>
+                </Offcanvas>
+            </Navegacao>
+        </>
+    )
 }
 
 export default alterar

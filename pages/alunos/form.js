@@ -10,6 +10,7 @@ import { mask } from 'remask'
 const form = () => {
     const { push } = useRouter()
     const { register, handleSubmit, formState: { errors }, setValue } = useForm()
+    const [turmas, setTurmas] = useState([])
     const [esportes, setEsportes] = useState([])
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -20,10 +21,18 @@ const form = () => {
         getAll()
     }, [])
     function getAll() {
+        axios.get('/api/turmas').then(resultado => {
+            setTurmas(resultado.data)
+        })
+    }
+    useEffect(() => {
+    
         axios.get('/api/esportes').then(resultado => {
             setEsportes(resultado.data)
         })
-    }
+    }, [])
+    
+    
 
     function salvar(dados) {
         axios.post('/api/alunos', dados)
@@ -54,7 +63,7 @@ const form = () => {
                             <Form.Group>
                                 <Form.Label >Modalidade</Form.Label>
                                 <Form.Select isInvalid={errors.modalidade} {...register('modalidade', validatorAluno.modalidade)} id="modalidade">
-                                    {esportes.map(item => (
+                                    {turmas.map(item => (
                                         <option key={item.id}>{item.nome}</option>
                                     ))}
                                 </Form.Select>
