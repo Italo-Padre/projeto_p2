@@ -63,7 +63,7 @@ const index = () => {
                   </Dropdown>
                 </td>
                 <td>
-                  <Card.Img src={item.imagem}/>
+                  <Card.Img style={{ width: '18rem' }} src={item.imagem}/>
                 </td>
                 <td>{item.nome}</td>
                 <td>{item.preco}</td>

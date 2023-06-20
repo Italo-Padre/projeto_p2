@@ -9,7 +9,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 
 const index = () => {
-
+  
   const [busca, setBusca] = useState('')
 
 
@@ -42,32 +42,24 @@ const index = () => {
   return (
     <>
       <Navegacao value={busca} onChange={(ev) => setBusca(ev.target.value)}>
-
-        <Row md={4}>
-
+        <Row md={4} className="g-4">
           {esportesFiltrados.map(item => (
-            
-        <CardGroup>
-                <Card style={{ width: '18rem' }} className= "text-center m-2">
+    
+            <CardGroup>
+                <Card style={{ width: '18rem' }}>
+                  <Card.Img  variant="top" src={item.imagem} />
                   <Card.Body>
-                  <Card.Img  src={item.imagem} alt="Card image" />
-                  <Card.Title>{item.nome}</Card.Title>
-                  <p>
-
+                    <Card.Title>{item.nome} - {item.preco}</Card.Title>
+                    <Card.Text>
                     {item.descricao}
-                  </p>
-                
-                  <Card.Text>{item.preco}</Card.Text>
-                  <Button href='/esportes' >Configurar</Button>
+                    </Card.Text>
+                    
                   </Card.Body>
                 </Card>
-            
-        </CardGroup>
-              
-          ))}
-        </Row>
-        
-        <div className="d-grid mb-5 gap-2">
+                </CardGroup>
+            ))}
+            </Row>
+        <div className="d-grid mt-3 mb-5 gap-2">
           <Button href='/alunos/form' variant="primary" size="lg">
             Matricule-se Já
           </Button>
